@@ -1,3 +1,12 @@
+import { useEffect, useState } from "react";
 export const Timer = () => {
-	return <p>Hello</p>;
+	const [timeNow, setTimeNow] = useState(new Date());
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setTimeNow(new Date());
+		}, 1000);
+		return () => clearTimeout(timer);
+	}, [timeNow]);
+
+	return <p>{timeNow.toUTCString()}</p>;
 };
